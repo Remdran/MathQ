@@ -10,11 +10,11 @@
 <body>
     <div class="container">
         <h1>Math Class 101</h1>
-        <p> 
-            <?php
-                displayQuestion(); 
-            ?>
-        </p>
+    
+        <?php
+            displayQuestion(); 
+        ?>
+      
         <input type="text" id="userAnswer"></input>
         <button id="submitBtn">Submit</button>
     </div>
