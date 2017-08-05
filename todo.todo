@@ -1,0 +1,6 @@
+☐ Fill database with questions and answers
+☐ On first load of page retrieve a random question from the database to display. Add the id of question to prevSeen array
+☐ When the user takes a guess inform the user whether they were right or wrong with a nice displayed message
+☐ Decide whether to let the user answer the same question again if they get it wrong - or move onto a new question
+☐ When the user gets it right, retrieve a new random question from the database (add this id to prevSeen array)
+☐ Maybe implement a simple score system to let the user keep track of how many they have answered correctly this session
