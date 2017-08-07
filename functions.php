@@ -10,6 +10,7 @@
 
     $idMin = "";
     $idMax ="";
+    $prevSeen = [];
 
     /* 
      *  STORE THE IDS FROM THE DATABASE INTO AN ARRAY SO WE CAN USE THEM TO GET A RANDOM QUESTION LATER
@@ -38,7 +39,7 @@
         global $link;
         global $idMin;
         global $idMax;
-        $prevSeen =[];
+        global $prevSeen;
         
         $qId = randomQuestion($idMin, $idMax, $prevSeen);
         
@@ -46,19 +47,20 @@
         $result = mysqli_query($link, $query);
 
         $row = mysqli_fetch_assoc($result);
-        echo "<p id='questionP' data-id='".$row['id']."'>".($row['question'])."</p>";
+        echo "<p class='questionP' data-id='".$row['id']."'>".($row['question'])."</p>";
     }
 
     /*
      *  GET A RANDOM ID, IF IT HASNT BEEN PREVIOUSLY SEEN RETURN IT AND ADD TO THE ARRAY, ELSE GET A NEW QUESTION
      */
     function randomQuestion($idMin, $idMax, $prevSeen) {
-        $quesId = rand($idMin, $idMax);
+        // $quesId = rand($idMin, $idMax);
+        $quesId = rand(1, 6);
         if (empty($prevSeen)) {
             $prevSeen[] = $quesId;
             return $quesId;
         } else {
-            for ($i = 0; $i < count(prevSeen); $i++) {
+            for ($i = 0; $i < count($prevSeen); $i++) {
                 if ($prevSeen[$i] == $quesId) {
                     randomQuestion();
                 } else {

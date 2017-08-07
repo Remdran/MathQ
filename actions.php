@@ -8,9 +8,13 @@
         $result = mysqli_query($link, $query);
         $row = mysqli_fetch_assoc($result);
         if(mysqli_real_escape_string($link, $_POST['answer']) == $row['answer']) {
-            echo "Correct";
+            echo "1";
         } else {
-            echo "Wrong";
+            echo "0";
         }
+    }
+
+    if($_GET['action'] == "newQ") {
+        displayQuestion();
     }
 ?>

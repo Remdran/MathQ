@@ -9,7 +9,33 @@ h1 {
     font-size: 3.5em;
 }
 
-p {
-    margin-top: 100px;
-    font-size: 2.5em;
+.questionP {
+    margin-top: 75px;
+    font-size: 50px;
+}
+
+.nextQ {
+    margin: 25px auto;
+    color:blue;
+    cursor: pointer;
+}
+
+.qWrong {
+    width: 500px;
+    background-color: red;
+    margin: 50px auto;
+    font-size: 2em;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+}
+
+.qRight {
+    width: 500px;
+    background-color: green;
+    margin: 50px auto;
+    font-size: 2em;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
 }
