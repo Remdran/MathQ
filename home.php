@@ -12,6 +12,7 @@
         <h1>Math Class 101</h1>
     
         <?php
+            initialise();
             displayQuestion(); 
         ?>
       

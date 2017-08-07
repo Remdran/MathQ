@@ -1,4 +1,4 @@
-☐ Fill database with questions and answers
+✔ Fill database with questions and answers @done (07/08/2017, 09:57:15)
 ☐ On first load of page retrieve a random question from the database to display. Add the id of question to prevSeen array
 ☐ When the user takes a guess inform the user whether they were right or wrong with a nice displayed message
 ☐ Decide whether to let the user answer the same question again if they get it wrong - or move onto a new question
