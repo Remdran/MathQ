@@ -11,9 +11,9 @@
     <div class="container">
         <h1>Math Class 101</h1>
         <div class="question">
-           <!-- <?php
-                //displayQuestion(); 
-            ?> -->
+            <?php
+                $mathq->DisplayQuestion(); 
+            ?> 
         </div>
       
         <input type="text" id="userAnswer"></input>

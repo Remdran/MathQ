@@ -1,6 +1,5 @@
 <?php
     include("functions.php");
-    include("MathQ.php");
 
     if($_GET['action'] == "checkAnswer") {
         //Include input validation
@@ -16,6 +15,6 @@
     }
 
     if($_GET['action'] == "newQ") {
-        displayQuestion();
+        $mathq->DisplayQuestion();
     }
 ?>
