@@ -60,7 +60,7 @@
                 $this->prevSeen[] = $quesId;
                 return $quesId;
             } else {
-                if(count($this->prevSeen) == $idMax){
+                if(count($this->prevSeen) == $idCount){
                     return "-1";
                 }
 
