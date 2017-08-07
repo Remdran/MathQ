@@ -11,10 +11,9 @@
     <div class="container">
         <h1>Math Class 101</h1>
         <div class="question">
-           <?php
-                initialise();
-                displayQuestion(); 
-            ?>
+           <!-- <?php
+                //displayQuestion(); 
+            ?> -->
         </div>
       
         <input type="text" id="userAnswer"></input>
@@ -22,7 +21,7 @@
         <div class="nextQ">Next Question...</div>
 
         <div class="qWrong">That answer was incorrect</div>
-        <div class="qRight">Correct!</div>
+        <div class="qRight">Correct!</div>       
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
