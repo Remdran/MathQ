@@ -4,14 +4,12 @@
         private $db_user = "root";
         private $db_pass = "";
         private $db_name = "mathq";
-        private $link;
+        public $link;
 
         private $idCount;
         private $idMin;
         private $idMax;
         private $prevSeen = [];
-
-
 
         function __construct() {
 
@@ -45,28 +43,50 @@
             $result = mysqli_query($this->link, $query);
 
             $row = mysqli_fetch_assoc($result);
-            echo "<p class='questionP' data-id='".$row['id']."'>".($row['question'])."</p>";
+
+            if($qId !== "-1"){
+                echo "<p class='questionP' data-id='".$row['id']."'>".($row['question'])."</p>";
+            } else {
+                echo "<p class='questionP'>No More Questions</p>";
+            }
+            var_dump($this->prevSeen);
         }
 
         function GetRandomQ() {
             var_dump($this->prevSeen);
+            $quesId = rand($this->idMin, $this->idMax);
             if(!$this->prevSeen) {
                 echo "First Time";
-                $quesId = rand($this->idMin, $this->idMax);
                 $this->prevSeen[] = $quesId;
                 return $quesId;
             } else {
-                echo "Second time";
-                for ($i = 0; $i < count($this->prevSeen); $i++) {
-                    if ($this->prevSeen[$i] == $quesId) {
-                        $this->GetRandomQ();
-                    } else {
-                        $this->prevSeen[] = $quesId;  
-                        return $quesId;
-                    }
+                if(count($this->prevSeen) == $idMax){
+                    return "-1";
                 }
+
+                echo "Second time";
+                foreach ($this->prevSeen as $id) {
+                    if ($id == $quesId) {
+                        $this->GetRandomQ();
+                    } 
+                }
+                echo "here";
+                $this->prevSeen[] = $quesId;  
+                return $quesId;                    
             }
-        }      
+        }
+                
+
+        function CheckAnswer() {
+            $query = "SELECT * FROM qanswers WHERE `id` = '".mysqli_real_escape_string($this->link, $_POST['Qid'])."'";
+            $result = mysqli_query($this->link, $query);
+            $row = mysqli_fetch_assoc($result);
+            if(mysqli_real_escape_string($this->link, $_POST['answer']) == $row['answer']) {
+                return "1";
+            } else {
+                return "0";
+            }
+        }
     }
 
 ?>
