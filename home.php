@@ -19,6 +19,7 @@
         <input type="text" id="userAnswer"></input>
         <button id="submitBtn">Submit</button>
         <div class="nextQ">Next Question...</div>
+        <button id="UnSet">UnSet</button>
 
         <div class="qWrong">That answer was incorrect</div>
         <div class="qRight">Correct!</div>       

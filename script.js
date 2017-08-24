@@ -29,3 +29,13 @@ function newQuestion() {
     })     
 }
 
+$("#UnSet").click(function () {
+    $.ajax({
+        method: "POST",
+        url: "actions.php?action=logout",
+        data: "",
+        success: function(result) {
+            
+        }
+    })      
+});

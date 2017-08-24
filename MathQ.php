@@ -5,78 +5,69 @@
         private $db_pass = "";
         private $db_name = "mathq";
         public $link;
-
         private $idCount;
         private $idMin;
         private $idMax;
         private $prevSeen = [];
-
         function __construct() {
-
+            session_start();
         }
-
         function Connect() {
             $this->link = mysqli_connect($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
-
             if($this->link === false) {
                 return mysqli_connect_error();
             }
         }
-
         function GetIdArray() {
             $query = "SELECT `id` FROM questions";
             $result = mysqli_query($this->link, $query);
             while ($row = mysqli_fetch_assoc($result)) {
                 $idsArray[] = $row['id'];
             }
-
             $this->idCount = count($idsArray);
             sort($idsArray);
             $this->idMin = $idsArray[0];
             $this->idMax = $idsArray[$this->idCount - 1];
         }
-
         function DisplayQuestion() {
-            $qId = $this->GetRandomQ();
-        
-            $query = "SELECT * FROM questions WHERE `id` = '".$qId."'";
-            $result = mysqli_query($this->link, $query);
-
-            $row = mysqli_fetch_assoc($result);
-
-            if($qId !== "-1"){
-                echo "<p class='questionP' data-id='".$row['id']."'>".($row['question'])."</p>";
-            } else {
-                echo "<p class='questionP'>No More Questions</p>";
+            if(($qId = $this->GetRandomQ()) == "-2"){
+                $this->DisplayQuestion();
+            } else {                    
+                if($qId !== "-1"){
+                    echo "<p class='questionP'>No More Questions</p>";
+                } else {
+                    $query = "SELECT * FROM questions WHERE `id` = '".$qId."'";
+                    $result = mysqli_query($this->link, $query);
+                    $row = mysqli_fetch_assoc($result);
+                    echo "<p class='questionP' data-id='".$row['id']."'>".($row['question'])."</p>";
+                }
+                var_dump(count($_SESSION['idArray']));
             }
-            var_dump($this->prevSeen);
         }
-
+        
         function GetRandomQ() {
-            var_dump($this->prevSeen);
+            var_dump($_SESSION['idArray']);
             $quesId = rand($this->idMin, $this->idMax);
-            if(!$this->prevSeen) {
+            if(!$_SESSION['idArray']) {
                 echo "First Time";
-                $this->prevSeen[] = $quesId;
+                $_SESSION['idArray'][] = $quesId;
                 return $quesId;
             } else {
-                if(count($this->prevSeen) == $idCount){
+                if(count($_SESSION['idArray']) == $this->idCount){
                     return "-1";
                 }
-
                 echo "Second time";
-                foreach ($this->prevSeen as $id) {
+                foreach ($_SESSION['idArray'] as $id) {
                     if ($id == $quesId) {
-                        $this->GetRandomQ();
+                        return "-2";
                     } 
                 }
                 echo "here";
-                $this->prevSeen[] = $quesId;  
+                $_SESSION['idArray'][] = $quesId;  
                 return $quesId;                    
             }
         }
                 
-
         function CheckAnswer() {
             $query = "SELECT * FROM qanswers WHERE `id` = '".mysqli_real_escape_string($this->link, $_POST['Qid'])."'";
             $result = mysqli_query($this->link, $query);
@@ -88,5 +79,4 @@
             }
         }
     }
-
 ?>
