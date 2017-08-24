@@ -8,16 +8,18 @@
         private $idCount;
         private $idMin;
         private $idMax;
-        private $prevSeen = [];
+
         function __construct() {
             session_start();
         }
+
         function Connect() {
             $this->link = mysqli_connect($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
             if($this->link === false) {
                 return mysqli_connect_error();
             }
         }
+
         function GetIdArray() {
             $query = "SELECT `id` FROM questions";
             $result = mysqli_query($this->link, $query);
@@ -29,42 +31,43 @@
             $this->idMin = $idsArray[0];
             $this->idMax = $idsArray[$this->idCount - 1];
         }
+
         function DisplayQuestion() {
             if(($qId = $this->GetRandomQ()) == "-2"){
                 $this->DisplayQuestion();
             } else {                    
-                if($qId !== "-1"){
+                if($qId == "-1"){
                     echo "<p class='questionP'>No More Questions</p>";
                 } else {
-                    $query = "SELECT * FROM questions WHERE `id` = '".$qId."'";
+                    $query = "SELECT * FROM questions WHERE `id` = '".mysqli_real_escape_string($this->link, $qId)."'";
                     $result = mysqli_query($this->link, $query);
                     $row = mysqli_fetch_assoc($result);
                     echo "<p class='questionP' data-id='".$row['id']."'>".($row['question'])."</p>";
                 }
-                var_dump(count($_SESSION['idArray']));
             }
         }
         
         function GetRandomQ() {
-            var_dump($_SESSION['idArray']);
             $quesId = rand($this->idMin, $this->idMax);
-            if(!$_SESSION['idArray']) {
-                echo "First Time";
-                $_SESSION['idArray'][] = $quesId;
-                return $quesId;
+            if(array_key_exists("idArray", $_SESSION)) {
+                if(!$_SESSION['idArray']) {
+                    $_SESSION['idArray'][] = $quesId;
+                    return $quesId;                
+                } else {
+                    if(count($_SESSION['idArray']) == $this->idCount){
+                        return "-1";
+                    }
+                    foreach ($_SESSION['idArray'] as $id) {
+                        if ($id == $quesId) {
+                            return "-2";
+                        } 
+                    }
+                    $_SESSION['idArray'][] = $quesId;  
+                    return $quesId;                    
+                }
             } else {
-                if(count($_SESSION['idArray']) == $this->idCount){
-                    return "-1";
-                }
-                echo "Second time";
-                foreach ($_SESSION['idArray'] as $id) {
-                    if ($id == $quesId) {
-                        return "-2";
-                    } 
-                }
-                echo "here";
-                $_SESSION['idArray'][] = $quesId;  
-                return $quesId;                    
+                $_SESSION['idArray'][] = $quesId;
+                return $quesId;                
             }
         }
                 

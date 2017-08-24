@@ -18,8 +18,9 @@
       
         <input type="text" id="userAnswer"></input>
         <button id="submitBtn">Submit</button>
+        <div class="score">Score: 0</div>
         <div class="nextQ">Next Question...</div>
-        <button id="UnSet">UnSet</button>
+        <button id="reset">Reset Questions</button>
 
         <div class="qWrong">That answer was incorrect</div>
         <div class="qRight">Correct!</div>       

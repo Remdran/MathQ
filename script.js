@@ -1,3 +1,5 @@
+var score = 0;
+
 $("#submitBtn").click(function () {
     $.ajax({
         method: "POST",
@@ -5,6 +7,8 @@ $("#submitBtn").click(function () {
         data: "answer=" + $("#userAnswer").val() + "&Qid=" + $(".questionP").attr("data-id"),
         success: function(result) {
             if(result == "1") {
+                score++;
+                $(".score").html("Score: " + score);
                 newQuestion();
                 $(".qWrong").hide();
             } else {
@@ -29,13 +33,14 @@ function newQuestion() {
     })     
 }
 
-$("#UnSet").click(function () {
+$("#reset").click(function () {
     $.ajax({
         method: "POST",
         url: "actions.php?action=logout",
         data: "",
         success: function(result) {
-            
+            score = 0;
+            location.reload();
         }
     })      
 });
