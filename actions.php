@@ -12,4 +12,4 @@
         session_unset();
         $_SESSION['idArray'] = [];
     }
-?>
+?> 

@@ -43,4 +43,4 @@ $("#reset").click(function () {
             location.reload();
         }
     })      
-});
+}); 

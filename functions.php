@@ -4,4 +4,4 @@
     $mathq = new MathQ();
     $mathq->Connect();
     $mathq->GetIdArray();
-?>
+?> 
