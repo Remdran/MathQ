@@ -37,7 +37,7 @@
                 $this->DisplayQuestion();
             } else {                    
                 if($qId == "-1"){
-                    echo "<p class='questionP'>No More Questions</p>";
+                    echo "<p class ='questionP' data-id='-1'>No More Questions</p>";
                 } else {
                     $query = "SELECT * FROM questions WHERE `id` = '".mysqli_real_escape_string($this->link, $qId)."'";
                     $result = mysqli_query($this->link, $query);
@@ -71,7 +71,7 @@
             }
         }
                 
-        function CheckAnswer() {
+        function CheckAnswer() {           
             $query = "SELECT * FROM qanswers WHERE `id` = '".mysqli_real_escape_string($this->link, $_POST['Qid'])."'";
             $result = mysqli_query($this->link, $query);
             $row = mysqli_fetch_assoc($result);
@@ -79,7 +79,7 @@
                 return "1";
             } else {
                 return "0";
-            }
+            }            
         }
     }
 ?> 

@@ -22,6 +22,7 @@ $("#submitBtn").click(function () {
 });
 
 $(".nextQ").click(function () {
+    $(".qWrong").hide();
     newQuestion();
 });
 
