@@ -10,6 +10,7 @@ $("#submitBtn").click(function () {
                 score++;
                 $(".score").html("Score: " + score);
                 $(".qWrong").hide();
+                $("#userAnswer").val("");
                 newQuestion();
             } else if (result == 0) {
                 $(".qWrong").show();

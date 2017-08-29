@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>Prof Lavelles Math Quiz</title>
 </head>
@@ -17,12 +16,13 @@
                     $mathq->DisplayQuestion(); 
                 ?> 
             </div>
+            <div class="score">Score: 0</div>
         
             <div class="qWrong">That answer was incorrect</div>      
-            <input type="text" id="userAnswer"></input>
+            <input type="text" id="userAnswer" placeholder="Enter Answer"></input>
             <button id="submitBtn">Submit</button>
-            <div class="score">Score: 0</div>
-            <div class="nextQ">Next Question...</div>
+            <br>
+            <button class="nextQ">Next Question</button>
             <button id="reset">Reset Questions</button>
         </div>
     </div>
