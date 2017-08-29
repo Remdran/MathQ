@@ -1,17 +1,39 @@
+body {
+    background-color: #EDB101;
+}
+
 .container {
-   width: 800px; 
+   max-width: 800px; 
    margin: 0 auto;
    text-align: center;
 }
 
 h1 {
     margin-top: 150px;
+    /* font-family: 'Baloo Tammudu', cursive; */
     font-size: 3.5em;
+    color: #845C00;
+}
+
+.question {
+    margin-top: 40px;
 }
 
 .questionP {
-    margin-top: 75px;
-    font-size: 50px;
+    width: fit-content;
+    margin: 30px auto;
+    border: 3px solid #845C00;
+    border-radius: 20px;
+    padding: .8em;
+    font-size: 2em;
+    background-color: #F5D026;
+    color: #845C00;
+}
+
+#userAnswer {
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
 }
 
 .nextQ {
@@ -22,22 +44,13 @@ h1 {
 
 .qWrong {
     width: 500px;
-    background-color: red;
+    background-color: #FF4900;
     margin: 50px auto;
     font-size: 2em;
     border-radius: 5px;
     padding: 10px;
     display: none;
-}
-
-.qRight {
-    width: 500px;
-    background-color: green;
-    margin: 50px auto;
-    font-size: 2em;
-    border-radius: 5px;
-    padding: 10px;
-    display: none;
+    color: #FECB5B;
 }
 
 .score {

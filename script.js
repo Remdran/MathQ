@@ -6,13 +6,15 @@ $("#submitBtn").click(function () {
         url: "actions.php?action=checkAnswer",
         data: "answer=" + $("#userAnswer").val() + "&Qid=" + $(".questionP").attr("data-id"),
         success: function(result) {
-            if(result == "1") {
+            if (result == 1) {
                 score++;
                 $(".score").html("Score: " + score);
-                newQuestion();
                 $(".qWrong").hide();
-            } else {
+                newQuestion();
+            } else if (result == 0) {
                 $(".qWrong").show();
+            } else {
+                $(".qWrong").html("An error has occured").show();
             }
         }
     })      
