@@ -9,22 +9,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Math Class 101</h1>
-        <div class="question">
-           <?php
-                initialise();
-                displayQuestion(); 
-            ?>
+        <div class="page">
+            <h1>Math Class 101</h1>
+            <div class="question">
+                <?php
+                    $mathq->DisplayQuestion(); 
+                ?> 
+            </div>
+            <div class="score">Score: 0</div>
+        
+            <div class="qWrong">That answer was incorrect</div>      
+            <input type="text" id="userAnswer" placeholder="Enter Answer"></input>
+            <button id="submitBtn">Submit</button>
+            <br>
+            <button class="nextQ">Next Question</button>
+            <button id="reset">Reset Questions</button>
         </div>
-      
-        <input type="text" id="userAnswer"></input>
-        <button id="submitBtn">Submit</button>
-        <div class="nextQ">Next Question...</div>
-
-        <div class="qWrong">That answer was incorrect</div>
-        <div class="qRight">Correct!</div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+</html> 
